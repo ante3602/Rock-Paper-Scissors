@@ -1,1 +1,85 @@
-console.log("Testing does it work?")
+function getComputerChoice(){
+   let choice = Math.floor(Math.random() * 3);
+   switch(choice){
+      case 0:
+         choice = "rock";
+         break;
+      case 1:
+         choice = "paper";
+         break;
+      case 2:
+         choice = "scissors";
+         break;
+   }
+   console.log("computer choice:" + choice)
+   return choice;
+}
+
+function getPlayerChoice(){
+   let playerChoice = prompt("Choose rock, paper or scissors");
+   playerChoice = playerChoice.toLowerCase();
+   console.log("player choice:" + playerChoice);
+
+   if(playerChoice !== "rock" && playerChoice!== "paper" && playerChoice !== "scissors"){
+      console.log("wrong input, you have to choose: rock, paper or scissors");
+      getPlayerChoice();
+   }
+   else{
+      return playerChoice;
+   }
+}
+
+function playRound(playerChoice, computerChoice){
+   let outcome = 0;
+   if((playerChoice === "rock" && computerChoice === "scissors")
+   || (playerChoice === "scissors" && computerChoice === "paper")
+   || (playerChoice === "paper" && computerChoice === "rock")
+   ){
+       outcome = 1;
+       console.log("you win the round!")
+   }
+   else if(
+      (computerChoice === "rock" && playerChoice === "scissors")
+   || (computerChoice === "scissors" && playerChoice === "paper")
+   || (computerChoice === "paper" && playerChoice === "rock")
+   ){
+      outcome = 2
+      console.log("Computer wins the round")
+   }
+   else{
+      console.log("The round is tied");
+   }
+   return outcome;
+}
+
+function game(){
+   let playerRoundWinCounter = 0;
+   let computerRoundWinCounter = 0;
+   for(let i = 0; i < 5; i++){
+      let result = playRound(getPlayerChoice(), getComputerChoice())
+      console.log(result);
+      if(result === 1){
+         playerRoundWinCounter += 1;
+      }
+      else if (result === 2){
+         computerRoundWinCounter += 1;
+      }
+      console.log(playerRoundWinCounter + ":" + computerRoundWinCounter);
+   }
+   if(playerRoundWinCounter > computerRoundWinCounter){
+      console.log("player wins! Congrats");
+   }
+   else if(playerRoundWinCounter < computerRoundWinCounter){
+      console.log("Game over, computer wins");
+   }
+   else{
+      console.log("game is tied");
+   }
+}
+
+game();
+
+
+
+
+
