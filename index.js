@@ -1,18 +1,18 @@
 function getComputerChoice(){
-   let choice = Math.floor(Math.random() * 3);
-   switch(choice){
+   let computerChoice = Math.floor(Math.random() * 3);
+   switch(computerChoice){
       case 0:
-         choice = "rock";
+         computerChoice = "rock";
          break;
       case 1:
-         choice = "paper";
+         computerChoice = "paper";
          break;
       case 2:
-         choice = "scissors";
+         computerChoice = "scissors";
          break;
    }
-   console.log("computer choice:" + choice)
-   return choice;
+   console.log("computer choice:" + computerChoice)
+   return computerChoice;
 }
 
 function getPlayerChoice(){
@@ -55,7 +55,8 @@ function playRound(playerChoice, computerChoice){
 function game(){
    let playerRoundWinCounter = 0;
    let computerRoundWinCounter = 0;
-   for(let i = 0; i < 5; i++){
+   let numberOfRounds = prompt("How many rounds do you want to play?")
+   for(let i = 0; i < numberOfRounds; i++){
       let result = playRound(getPlayerChoice(), getComputerChoice())
       console.log(result);
       if(result === 1){
